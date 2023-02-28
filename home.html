@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'phnbk.css'%}">
+</head>
+<body class="background" >
+<div class="addstyle">
+    <form action="phn" method="POST" class="add1">
+        {% csrf_token %}
+     <label style="margin-left:180px ;" for=""><b>Name</b></label>
+    <input type="text" name="name"><br>
+    <label style="margin-left:130px;" for=""><b>Phonenumber</b></label>
+    <input type="number" name="number" style="margin-top: 30px;"><br>
+    <input type="submit" value="ADD" class="subdemo3">
+        {{msg}}
+    </form>
+</div>
+<!-- <h1>Phonebook</h1> -->
+
+
+
+    <div class="disp">
+    <form action="dis" class="add2">
+        <table style="border:2px solid red ;" border="1" >
+            <tr>
+            <td style="color:antiquewhite;"><b>Name</b></td>
+            <td style="color:antiquewhite;"><b> Phonenumber </b></td>
+            </tr>
+            {% for i in emp %}
+            <tr>
+                <td><b>{{i.Name}}</b></td>
+                <td><b>{{i.Number}}</b></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <input type="submit" value="DISPLAY" class="subdemo4">
+    </div>
+
+       </form>
+    <div class="update">
+    <form action="updt" method="POST" class="add3">
+        {% csrf_token %}
+        <b>Enter the oldname</b><input type="text" name="oldname"><br>
+       <b>Enter the newname</b><input type="text" name="newname">
+        <input type="submit" value="UPDATE" style="margin-left:20px; margin-top: 20px;" class="subdemo">
+         </form>
+    </div>
+
+    <div class="delete">
+    <form action="del" method="POST" class="add4">
+        {% csrf_token %}
+   <b> Enter the name to delete</b><input type="text" name="dlt">
+    <input type="submit" value="DELETE" class="subdemo2">
+    {{del}}
+
+    </form>
+</div>
+</body>
+</html>
